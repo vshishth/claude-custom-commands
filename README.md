@@ -10,28 +10,63 @@ Custom commands in Claude Desktop allow you to create reusable prompts and workf
 
 ```
 .
-├── README.md           # This file
-├── commands/          # Directory for individual command files
-├── templates/         # Reusable command templates
-└── examples/          # Example commands for reference
+├── README.md                              # This file
+├── commands/                             # Directory for individual command files
+│   ├── development/                      # Development-related commands
+│   │   ├── architecture.md               # System architecture design & evaluation
+│   │   ├── code-review.md                # Comprehensive code review
+│   │   ├── debug.md                      # Advanced debugging assistance
+│   │   ├── refactor.md                   # Code refactoring planning
+│   │   └── test-generator.md             # Comprehensive test generation
+│   ├── productivity/                     # Productivity enhancement commands
+│   │   ├── daily-standups.md             # Generate standups updates
+│   │   ├── git-commit.md                 # Create well-structured git commits
+│   │   ├── meeting-notes.md              # Structure and summarize meeting notes
+│   │   ├── project-plan.md               # Create detailed project plans
+│   │   └── task-breakdown.md             # Break down complex tasks
+│   ├── analysis/                         # Analysis and evaluation commands
+│   │   ├── code-quality.md               # Analyze codebase quality metrics
+│   │   ├── dependency-analysis.md        # Analyze project dependencies
+│   │   ├── performance-analysis.md       # Find performance bottlenecks
+│   │   └── security-audit.md             # Security vulnerability assessment
+│   └── writing/                          # Documentation and content commands
+│       ├── code-comments.md              # Generate professional code comments
+│       ├── documentation.md              # Create comprehensive documentation
+│       ├── release-notes.md              # Generate structured release notes
+│       ├── technical-spec.md             # Create detailed technical specs
+│       └── user-stories.md               # Generate user stories
+├── templates/                           # Reusable command templates
+│   └── command-template.md              # Template for creating new commands
+└── examples/                            # Example commands for reference
+    └── git-workflow.md                  # Git workflow assistant example
 ```
 
 ## Command Format
 
-Custom commands are typically defined in JSON or YAML format with the following structure:
+Custom Claude commands are defined in Markdown format with YAML frontmatter:
 
-```json
-{
-  "name": "command-name",
-  "description": "Brief description of what this command does",
-  "prompt": "The actual prompt or instruction for Claude",
-  "parameters": {
-    "param1": "Description of parameter 1",
-    "param2": "Description of parameter 2"
-  },
-  "category": "development|writing|analysis|other"
-}
+```markdown
+---
+description: Brief description of what this command does
+argument-hint: Description of expected input (optional)
+allowed-tools: Tools the command can use (comma-separated, optional)
+---
+
+# Command Name
+
+## Instructions
+
+I'll help you with [specific task] based on:
+
 ```
+$ARGUMENTS
+```
+
+## Process
+[Command content that processes the input and generates the desired output]
+```
+
+The `$ARGUMENTS` placeholder is automatically replaced with the user's input when the command is executed.
 
 ## Getting Started
 
@@ -43,28 +78,31 @@ Custom commands are typically defined in JSON or YAML format with the following 
 ## Command Categories
 
 ### Development
-- Code review and analysis
-- Documentation generation
-- Testing assistance
-- Debugging help
-
-### Writing
-- Content creation
-- Editing and proofreading
-- Style guides
-- Template generation
-
-### Analysis
-- Data interpretation
-- Research assistance
-- Report generation
-- Comparative analysis
+- **Code Review** - Comprehensive code quality and security analysis
+- **Architecture** - Design system architecture or evaluate existing architecture
+- **Debug** - Advanced debugging assistance for identifying and fixing issues
+- **Refactor** - Generate refactoring plans to improve code quality
+- **Test Generator** - Create comprehensive tests for your code
 
 ### Productivity
-- Task planning
-- Meeting summaries
-- Email drafting
-- Project management
+- **Git Commit** - Create well-structured git commits using conventional format
+- **Meeting Notes** - Structure and summarize meeting notes with action items
+- **Project Plan** - Create detailed project plans with tasks and timelines
+- **Daily Standups** - Generate structured daily standup updates
+- **Task Breakdown** - Break down complex tasks into manageable subtasks
+
+### Analysis
+- **Code Quality** - Analyze codebase quality metrics and suggest improvements
+- **Dependency Analysis** - Analyze project dependencies and identify risks
+- **Performance Analysis** - Find performance bottlenecks and optimization opportunities
+- **Security Audit** - Perform comprehensive security vulnerability assessment
+
+### Writing
+- **Documentation** - Generate comprehensive project or code documentation
+- **Release Notes** - Create structured release notes from git history
+- **Technical Spec** - Write detailed technical specifications for features
+- **Code Comments** - Generate professional code comments following best practices
+- **User Stories** - Create structured user stories from requirements
 
 ## Best Practices
 
@@ -86,36 +124,76 @@ Custom commands are typically defined in JSON or YAML format with the following 
 ## Command Examples
 
 ### Code Review Command
-```json
-{
-  "name": "code-review",
-  "description": "Perform a comprehensive code review",
-  "prompt": "Please review the following code for:\n- Code quality and best practices\n- Potential bugs or issues\n- Performance considerations\n- Security vulnerabilities\n- Suggestions for improvement\n\nCode:\n{code}",
-  "parameters": {
-    "code": "The code to be reviewed"
-  },
-  "category": "development"
-}
+```markdown
+---
+description: Perform a comprehensive code review
+argument-hint: file_path or paste code directly
+allowed-tools: Read, Grep, Glob
+---
+
+# Comprehensive Code Review
+
+## Instructions
+
+Analyze the following code with the mindset of a senior engineer conducting a thorough code review:
+
+```
+$ARGUMENTS
 ```
 
-### Meeting Summary Command
-```json
-{
-  "name": "meeting-summary",
-  "description": "Generate a structured meeting summary",
-  "prompt": "Create a professional meeting summary with:\n- Key decisions made\n- Action items with owners\n- Next steps\n- Important discussion points\n\nMeeting notes:\n{notes}",
-  "parameters": {
-    "notes": "Raw meeting notes or transcript"
-  },
-  "category": "productivity"
-}
+## Review Focus Areas
+
+1. **Code Quality**
+   - Clean code principles
+   - Readability and maintainability
+   - Code organization and structure
+   - Function/method length and complexity
+   - Variable/function naming conventions
+   - Comments and documentation
+
+[Additional review sections...]
+```
+
+### Meeting Notes Command
+```markdown
+---
+description: Structure and summarize meeting notes with action items
+argument-hint: raw meeting notes or transcript
+allowed-tools: Task
+---
+
+# Meeting Notes Organizer
+
+## Instructions
+
+I'll organize and structure the following meeting notes into a clear, actionable summary:
+
+```
+$ARGUMENTS
+```
+
+## Analysis Process
+
+1. **Meeting Content Analysis**
+   - Identify key discussion topics
+   - Extract decisions made
+   - Capture action items and owners
+   - Note important insights and concerns
+   - Recognize unresolved questions
+
+[Additional sections...]
 ```
 
 ## Installation and Usage
 
-1. **Save commands** in the appropriate directory structure
-2. **Import into Claude Desktop** following the application's custom command import process
-3. **Use commands** by typing the command name or using the designated shortcut
+1. **Clone this repository** to your local machine
+2. **Copy commands** to your Claude commands directory:
+   - Personal commands: `~/.claude/commands/`
+   - Project-level commands: `.claude/commands/` in your project directory
+3. **Use commands** by typing the command name with a forward slash, e.g., `/code-review`
+4. **Provide arguments** directly after the command or in a new message
+
+For more information on Claude commands, see the [official documentation](https://docs.anthropic.com/en/docs/claude-code/slash-commands).
 
 ## Troubleshooting
 

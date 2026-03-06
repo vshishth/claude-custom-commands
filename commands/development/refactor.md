@@ -1,61 +1,27 @@
 ---
-description: Generate a refactoring plan and implementation for improving code quality
-argument-hint: file_path or paste code directly
-allowed-tools: Read, Grep, Glob, Task
+description: Refactor code with a safe, incremental approach
+argument-hint: file path or paste code to refactor
+allowed-tools: Read, Grep, Glob, Bash
 ---
 
-# Code Refactoring Plan & Implementation
+# Refactor
 
-## Instructions
-
-Analyze the following code and provide a comprehensive refactoring plan focused on improving quality while preserving functionality:
+Analyze and refactor the following code. Preserve all existing behavior.
 
 ```
 $ARGUMENTS
 ```
 
-## Refactoring Analysis
+## Approach
 
-1. **Code Structure Assessment**
-   - Identify overly complex methods/functions
-   - Detect code duplication
-   - Find tightly coupled components
-   - Locate unclear abstractions
-   - Note poor separation of concerns
+1. **Identify** the specific problems: duplication, complexity, poor naming, tight coupling, missing abstractions, or SOLID violations
+2. **Plan** an incremental sequence of safe transformations - each step should leave the code in a working state
+3. **Execute** the refactoring with clear before/after for each change
+4. **Validate** - describe how to verify nothing broke (existing tests, new tests, manual checks)
 
-2. **Refactoring Opportunities**
-   - Extract method/function opportunities
-   - Class/module restructuring needs
-   - Interface improvements
-   - Design pattern applications
-   - Performance optimization points
+## Constraints
 
-3. **Code Quality Issues**
-   - Naming improvements
-   - Comment/documentation needs
-   - Testing gaps
-   - Error handling weaknesses
-
-## Refactoring Plan
-
-For each identified issue:
-1. Describe the current problem concisely
-2. Explain why it needs refactoring (maintainability, performance, etc.)
-3. Provide a clear refactoring strategy
-4. Show a "before and after" code comparison
-
-## Implementation Steps
-
-Present a sequential list of refactoring steps:
-1. Start with the simplest, safest changes
-2. Progress to more complex transformations
-3. Include test/verification steps between major changes
-4. Note potential risks and mitigation strategies
-
-## Refactored Code
-
-Provide the complete refactored implementation with:
-1. Clean, well-structured code
-2. Improved naming and organization
-3. Appropriate comments/documentation
-4. Preserved functionality
+- Each transformation must be small enough to review independently
+- Do not change public interfaces unless explicitly requested
+- Do not add speculative abstractions - only extract when duplication or complexity demands it
+- Prioritize readability over cleverness

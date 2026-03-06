@@ -2,76 +2,45 @@
 description: Template for creating new Claude commands
 ---
 
-# Command Template Guide
+# Command Template
 
-## Basic Command Structure
+## Structure
 
 ```markdown
 ---
-description: Clear, concise description of what this command does
-argument-hint: Description of expected input (optional)
-allowed-tools: Tools the command can use (optional, comma-separated)
+description: One-line description of what this command does
+argument-hint: what input to provide
+allowed-tools: Read, Grep, Glob, Bash(specific:patterns)
 ---
 
 # Command Name
 
-## Instructions
+[Brief framing of what you want Claude to do]
 
-I'll help you with [specific task] based on:
-
-```
+\```
 $ARGUMENTS
+\```
+
+## Process
+
+1. **Step 1** - What to analyze or do first
+2. **Step 2** - Next action
+3. **Step 3** - Final action
+
+## Output
+
+Describe the expected output format.
+
+## Principles
+
+- Key constraint or quality bar
+- Another constraint
 ```
 
-## Process Steps
+## Tips
 
-1. **Step 1 Name**
-   - Substep detail
-   - Substep detail
-
-2. **Step 2 Name**
-   - Substep detail
-   - Substep detail
-
-## Output Structure
-
-### Section 1
-[Description of what goes here]
-
-### Section 2
-[Description of what goes here]
-
-## Additional Information
-[Optional sections, customizations, etc.]
-```
-
-## YAML Frontmatter Options
-
-### Required Fields
-- `description`: Concise summary of the command's purpose
-
-### Optional Fields
-- `argument-hint`: Guidance on what input to provide
-- `allowed-tools`: Specific tools the command can use
-- `private`: Set to `true` to hide from listings (default: false)
-
-## Best Practices
-
-1. **Clear Purpose**
-   - Each command should do one thing well
-   - Focus on specific use cases
-
-2. **Structured Output**
-   - Use consistent formatting
-   - Organize information logically
-   - Use markdown for readability
-
-3. **Dynamic Content**
-   - Use `$ARGUMENTS` to capture user input
-   - Use `!` prefix for bash commands
-   - Use `@` prefix for file references
-
-4. **Maintainability**
-   - Include clear documentation
-   - Version your commands
-   - Group related commands
+- Keep commands under 50 lines - Claude already knows how to do most things; you're setting focus and format
+- Use `allowed-tools` to limit scope and prevent unintended side effects
+- Use `!` backtick syntax for dynamic context (e.g., !`git status`)
+- Focus on WHAT and WHY, not exhaustive HOW - trust the model
+- One command, one purpose

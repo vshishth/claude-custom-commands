@@ -1,84 +1,31 @@
 ---
-description: Analyze project dependencies, identify risks and suggest improvements
-argument-hint: package.json, Gemfile, requirements.txt, etc.
-allowed-tools: Read, Grep, Glob, Bash(npm list:*, pip list:*, bundle list:*, yarn list:*)
+description: Analyze project dependencies for risks, bloat, and update needs
+argument-hint: package.json, requirements.txt, go.mod, or similar
+allowed-tools: Read, Grep, Glob, Bash(npm:*, pip:*, yarn:*, bundle:*, cargo:*, go:*)
 ---
 
 # Dependency Analysis
 
-## Context
-
-Let me analyze the dependencies in your project:
+Analyze dependencies for this project:
 
 ```
 $ARGUMENTS
 ```
 
-Installed dependencies:
-!`npm list --depth=0 2>/dev/null || pip list 2>/dev/null || bundle list 2>/dev/null || yarn list --depth=0 2>/dev/null || echo "No standard dependency manager detected"`
+Current dependency tree:
+!`npm list --depth=0 2>/dev/null || pip list 2>/dev/null || bundle list 2>/dev/null || cargo tree --depth=1 2>/dev/null || echo "Could not auto-detect dependencies"`
 
-## Analysis Process
+## Analysis
 
-1. **Dependency Overview**
-   - Total dependencies count
-   - Direct vs. transitive dependencies
-   - Production vs. development dependencies
-   - Major framework and library detection
+1. **Health check** - Outdated, deprecated, or unmaintained packages
+2. **Security** - Known vulnerabilities (CVEs), packages with poor security track records
+3. **Bloat** - Unused dependencies, oversized packages, overlapping functionality
+4. **Risk** - Single-maintainer packages, low adoption, missing types, license incompatibilities
+5. **Upgrades** - Breaking changes in available updates, migration effort required
 
-2. **Risk Assessment**
-   - Outdated dependencies
-   - Deprecated packages
-   - Security vulnerabilities
-   - License compliance issues
-   - Conflicting versions
-   - Unused dependencies
+## Output
 
-3. **Dependency Graph**
-   - Key dependency relationships
-   - Dependency chains
-   - Circular dependencies
-   - Bottleneck packages
-
-## Detailed Report
-
-### Critical Dependencies
-- Core frameworks
-- Essential libraries
-- Infrastructure components
-- Testing frameworks
-
-### Dependency Health Metrics
-- Update frequency
-- Community activity
-- Maintenance status
-- Documentation quality
-- Test coverage
-
-### Vulnerability Assessment
-- Known security issues
-- Potential exploit vectors
-- Severity ratings
-- Patch status
-
-## Optimization Recommendations
-
-### Immediate Actions
-- Critical updates needed
-- Security patches
-- Breaking changes to address
-
-### Maintenance Strategy
-- Update policy recommendations
-- Dependency refresh cadence
-- Automated monitoring tools
-
-### Architectural Improvements
-- Dependency reduction opportunities
-- Alternative package recommendations
-- Modularization suggestions
-- Isolation strategies for risky dependencies
-
-## Implementation Plan
-- Prioritized update sequence
-- Testing requirements
-- Potential impact assessment
+- **Critical updates**: Security patches needed now
+- **Recommended removals**: Unused or replaceable dependencies
+- **Upgrade plan**: Ordered list of updates with breaking change notes
+- **Alternatives**: Better packages to replace problematic ones

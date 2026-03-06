@@ -1,70 +1,33 @@
 ---
-description: Perform a comprehensive code review
-argument-hint: file_path or paste code directly
-allowed-tools: Read, Grep, Glob
+description: Comprehensive code review with actionable findings
+argument-hint: file path, directory, or paste code
+allowed-tools: Read, Grep, Glob, Bash(git diff:*)
 ---
 
-# Comprehensive Code Review
+# Code Review
 
-## Instructions
-
-Analyze the following code with the mindset of a senior engineer conducting a thorough code review:
+Review the following code as a Principal Engineer. Be direct and specific.
 
 ```
 $ARGUMENTS
 ```
 
-## Review Focus Areas
+## Review Priorities (in order)
 
-1. **Code Quality**
-   - Clean code principles
-   - Readability and maintainability
-   - Code organization and structure
-   - Function/method length and complexity
-   - Variable/function naming conventions
-   - Comments and documentation
+1. **Correctness** - Logic errors, unhandled edge cases, race conditions, null safety
+2. **Security** - Injection, auth gaps, data exposure, OWASP Top 10 violations
+3. **Design** - Abstractions, coupling, cohesion, separation of concerns, SOLID violations
+4. **Performance** - Algorithmic complexity, unnecessary allocations, N+1 queries, missing indexes
+5. **Maintainability** - Readability, naming, complexity, testability
 
-2. **Bugs & Issues**
-   - Logic errors
-   - Edge cases not handled
-   - Potential null/undefined references
-   - Off-by-one errors
-   - Race conditions (for concurrent code)
-   - Memory leaks
+## Output Format
 
-3. **Performance Considerations**
-   - Time complexity analysis
-   - Space complexity analysis
-   - Efficient algorithm choices
-   - Potential bottlenecks
-   - Resource usage
+For each finding:
+- **Location**: file:line or code snippet
+- **Severity**: Critical / High / Medium / Low
+- **Issue**: One-sentence description
+- **Fix**: Concrete code change or approach
 
-4. **Security**
-   - Input validation
-   - Authorization checks
-   - SQL/NoSQL injection risks
-   - XSS vulnerabilities
-   - Data exposure risks
-   - Secure credential handling
-
-5. **Testing**
-   - Test coverage assessment
-   - Missing test cases
-   - Testability issues
-
-## Review Format
-
-For each issue identified:
-1. Provide the specific line number or code snippet
-2. Explain the issue clearly
-3. Rate the severity (Critical, High, Medium, Low)
-4. Provide a specific recommendation for improvement
-5. Include sample code when appropriate
-
-## Summary
-
-Conclude with:
-1. Overall assessment (3-5 bullet points)
-2. Key strengths of the code
-3. Priority improvements (top 3)
-4. Any architectural considerations
+End with:
+- **Verdict**: Ship / Ship with changes / Needs rework
+- **Top 3 priorities** if changes are needed

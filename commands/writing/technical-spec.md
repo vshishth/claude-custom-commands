@@ -1,88 +1,26 @@
 ---
-description: Create a detailed technical specification for a feature or system
-argument-hint: feature requirements or system description
-allowed-tools: Task
+description: Write a technical design document for a feature or system
+argument-hint: feature requirements or problem statement
+allowed-tools: Read, Grep, Glob
 ---
 
-# Technical Specification Generator
+# Technical Design Document
 
-## Instructions
-
-I'll create a comprehensive technical specification based on:
+Write a technical design document based on:
 
 ```
 $ARGUMENTS
 ```
 
-## Specification Structure
+## Structure
 
-1. **Overview**
-   - Purpose and scope
-   - Business context
-   - User needs addressed
-   - Success criteria
-   - Key stakeholders
+1. **Problem statement** - What problem are we solving and why now
+2. **Goals & non-goals** - Explicitly scope what this does and does not address
+3. **Proposed design** - Architecture, data model, API contracts, key algorithms
+4. **Alternatives considered** - What else was evaluated and why the proposed approach wins
+5. **Risks & mitigations** - What could go wrong, how we handle it
+6. **Rollout plan** - How to ship incrementally with feature flags, migrations, or phased releases
+7. **Observability** - What metrics, logs, and alerts confirm this works in production
+8. **Open questions** - Decisions that still need input
 
-2. **Requirements Analysis**
-   - Functional requirements
-   - Non-functional requirements
-     - Performance
-     - Scalability
-     - Security
-     - Reliability
-     - Usability
-   - Constraints and limitations
-   - Assumptions
-
-3. **Technical Design**
-   - System architecture
-   - Component breakdown
-   - Data models
-   - API contracts
-   - State management
-   - User interfaces
-   - Integration points
-   - Infrastructure needs
-
-4. **Implementation Plan**
-   - Development approach
-   - Major components and responsibilities
-   - Technology stack selection
-   - Third-party dependencies
-   - Reuse of existing components
-   - Custom development needs
-
-5. **Testing Strategy**
-   - Test coverage requirements
-   - Test data needs
-   - Testing tools and frameworks
-   - Performance testing approach
-   - Security testing
-   - Acceptance criteria validation
-
-6. **Deployment Strategy**
-   - Release approach
-   - Environment requirements
-   - Configuration management
-   - Feature flagging strategy
-   - Rollback plan
-   - Monitoring and observability
-
-7. **Risks and Mitigations**
-   - Technical risks
-   - Resource risks
-   - Timeline risks
-   - Dependency risks
-   - Mitigation strategies
-
-8. **Alternatives Considered**
-   - Alternative approaches
-   - Tradeoff analysis
-   - Selection criteria
-   - Justification for chosen approach
-
-9. **Timeline and Milestones**
-   - Development phases
-   - Key deliverables
-   - Critical path
-   - Dependencies on other teams/systems
+Use diagrams (Mermaid) where they add clarity. Be specific enough that another engineer could implement this without ambiguity.

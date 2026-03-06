@@ -1,77 +1,32 @@
 ---
-description: Design system architecture or evaluate existing architecture
-argument-hint: requirements or existing architecture details
-allowed-tools: Grep, Glob, Task
+description: Design or evaluate system architecture
+argument-hint: requirements, existing system description, or architecture question
+allowed-tools: Read, Grep, Glob, Bash
 ---
 
-# System Architecture Design & Evaluation
+# Architecture
 
-## Instructions
-
-I'll help design a new system architecture or evaluate an existing one based on:
+Design or evaluate the system architecture based on:
 
 ```
 $ARGUMENTS
 ```
 
-## Architecture Analysis
+## For New Systems
 
-1. **Requirements Analysis**
-   - Functional requirements
-   - Non-functional requirements
-     - Performance expectations
-     - Scalability needs
-     - Reliability targets
-     - Security considerations
-   - Constraints (technical, business, regulatory)
+1. **Clarify requirements** - Functional needs, scale targets, latency/throughput SLAs, team size, and constraints
+2. **Propose architecture** - Components, boundaries, data flow, storage, and communication patterns
+3. **Justify decisions** - For each significant choice, state the alternatives considered and why this wins
+4. **Identify risks** - What could go wrong, what's hard to change later, where are the unknowns
+5. **Define milestones** - What to build first, what can be deferred
 
-2. **Architecture Components**
-   - System boundaries and interfaces
-   - Major components and their responsibilities
-   - Data flow between components
-   - API design principles
-   - Database architecture
-   - Infrastructure considerations
+## For Existing Systems
 
-3. **Quality Attributes Assessment**
-   - Scalability strategies
-   - Performance optimization approaches
-   - Security measures
-   - Maintainability factors
-   - Testability considerations
-   - Deployment architecture
+1. **Assess current state** - Component map, dependency graph, pain points
+2. **Identify problems** - Scaling bottlenecks, single points of failure, coupling issues, operational burden
+3. **Recommend changes** - Prioritized by impact and feasibility, with migration path for each
+4. **Flag risks** - What breaks if left as-is, what breaks during migration
 
-## Design Decisions
+## Output
 
-For each major design decision:
-1. Options considered
-2. Tradeoffs analyzed
-3. Selection criteria
-4. Rationale for final choice
-
-## Architecture Diagrams
-
-1. **High-Level Architecture**
-   - Component diagram
-   - Deployment view
-   - Data flow
-
-2. **Detailed Designs**
-   - Critical components
-   - Database schema
-   - API contracts
-
-## Implementation Roadmap
-
-1. Development phasing
-2. Critical path components
-3. Technical risk assessment
-4. Migration strategy (for existing systems)
-
-## Architecture Review
-
-For existing architectures:
-1. Strengths evaluation
-2. Pain points identification
-3. Technical debt assessment
-4. Improvement recommendations
+Use text-based diagrams (Mermaid or ASCII) for component relationships and data flow. Be opinionated - recommend a specific approach, don't just list options.

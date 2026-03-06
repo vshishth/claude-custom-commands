@@ -1,122 +1,36 @@
 ---
-description: Design comprehensive RESTful or GraphQL APIs with documentation
-argument-hint: API requirements, domain model, and constraints
-allowed-tools: Read, Task, Glob
+description: Design APIs (REST or GraphQL) with contracts and documentation
+argument-hint: domain model, requirements, or existing API to improve
+allowed-tools: Read, Grep, Glob
 ---
 
-# API Design & Documentation Generator
+# API Design
 
-## Instructions
-
-I'll create a comprehensive API design based on:
+Design an API based on:
 
 ```
 $ARGUMENTS
 ```
 
-## Analysis Process
+## Process
 
-1. **Requirements Analysis**
-   - Functional requirements identification
-   - Data model examination
-   - Access pattern analysis
-   - Integration requirements
-   - Performance expectations
-   - Scaling considerations
+1. **Model resources** from the domain - identify entities, relationships, and operations
+2. **Design endpoints/schema** following REST conventions or GraphQL best practices
+3. **Define contracts** - request/response schemas, status codes, error format
+4. **Address cross-cutting concerns**: authentication, pagination, filtering, rate limiting, versioning
 
-2. **API Architecture Selection**
-   - REST vs GraphQL vs Hybrid evaluation
-   - Version strategy determination
-   - Authentication mechanism selection
-   - Rate limiting approach
-   - Caching strategy
+## Output
 
-3. **Resource/Schema Design**
-   - Entity identification
-   - Relationship modeling
-   - CRUD operation mapping
-   - Query capability design
-   - Mutation capability design
-   - Subscription needs (if real-time)
+- **API specification** (OpenAPI/Swagger for REST, SDL for GraphQL)
+- **Example requests and responses** for each endpoint
+- **Error contract** - consistent error response format with codes
+- **Authentication flow** - how clients authenticate and what scopes/permissions apply
+- **Pagination strategy** - cursor-based preferred for large datasets
 
-## API Design Output
+## Principles
 
-### API Architecture
-- Protocol selection
-- Communication patterns
-- Authentication flow
-- Authorization framework
-- Error handling strategy
-- Versioning approach
-
-### REST API Design
-- Resource hierarchy
-- URI structure
-- HTTP method usage
-- Status code strategy
-- Request/response format
-- Collection pagination approach
-- Filtering mechanism
-- Sorting capabilities
-- Field selection strategy
-
-### GraphQL Schema Design
-- Type definitions
-- Query definitions
-- Mutation definitions
-- Subscription definitions
-- Resolver structure
-- Input validation
-- Directive usage
-- Error handling strategy
-- N+1 query prevention
-
-### Security Design
-- Authentication mechanisms
-- Authorization rules
-- Input validation approach
-- Output sanitization
-- Rate limiting strategy
-- CORS configuration
-- Data encryption requirements
-
-### Performance Optimization
-- Caching strategy
-- Query optimization
-- Connection pooling
-- Response compression
-- Batch operations
-- Pagination implementation
-
-## API Documentation
-
-### OpenAPI/Swagger Specification
-- Complete API specification
-- Schema definitions
-- Path configurations
-- Security definitions
-- Example requests/responses
-
-### GraphQL Schema Documentation
-- Type documentation
-- Query documentation
-- Mutation documentation
-- Directive explanations
-- Best practice guidelines
-
-### Developer Guide
-- Authentication guide
-- Rate limiting explanation
-- Error handling documentation
-- Pagination guide
-- Filtering examples
-- Common use cases
-- Integration code samples
-
-### Implementation Recommendations
-- Framework recommendations
-- Middleware suggestions
-- Validation strategy
-- Testing approach
-- Monitoring recommendations
-- Documentation maintenance
+- Consistent naming conventions (plural nouns for REST resources)
+- Idempotent operations where possible
+- Validate all input at the boundary
+- Don't expose internal IDs or implementation details
+- Design for the client's use cases, not the database schema

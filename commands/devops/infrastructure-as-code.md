@@ -1,144 +1,32 @@
 ---
-description: Generate infrastructure as code templates for various cloud providers
-argument-hint: application requirements, cloud provider, and architectural needs
-allowed-tools: Read, Task, Glob
+description: Generate infrastructure as code (Terraform, CloudFormation, Pulumi)
+argument-hint: cloud provider, services needed, and requirements
+allowed-tools: Read, Glob
 ---
 
-# Infrastructure as Code Generator
+# Infrastructure as Code
 
-## Instructions
-
-I'll create infrastructure as code templates based on:
+Generate IaC templates for:
 
 ```
 $ARGUMENTS
 ```
 
-## Analysis Process
+## Process
 
-1. **Requirements Analysis**
-   - Workload characteristics
-   - Scalability needs
-   - High availability requirements
-   - Security constraints
-   - Compliance requirements
-   - Budget considerations
-   - Geographic distribution
+1. **Map requirements** to cloud services - compute, storage, networking, security
+2. **Design architecture** with proper network isolation, security groups, and IAM
+3. **Generate code** using the specified IaC tool (default: Terraform) with:
+   - Modular structure (reusable modules per component)
+   - Environment separation via variables/workspaces
+   - State management configuration
+   - Tagging strategy for cost allocation
+   - Least-privilege IAM policies
 
-2. **Architecture Design**
-   - Component identification
-   - Service selection
-   - Network topology
-   - Security boundaries
-   - Data flow mapping
-   - Integration points
-   - Failure domain isolation
+## Principles
 
-3. **Resource Planning**
-   - Compute sizing strategy
-   - Storage architecture
-   - Database selection
-   - Caching strategy
-   - Content delivery approach
-   - Backup and recovery design
-   - Disaster recovery planning
-
-## Infrastructure Code Generation
-
-### Core Infrastructure
-- VPC/Network design
-- Subnet architecture
-- Security group definitions
-- IAM/RBAC configuration
-- Load balancer setup
-- Auto-scaling configuration
-- DNS management
-
-### Compute Resources
-- Instance/container definitions
-- Kubernetes manifest generation
-- Serverless function templates
-- Spot instance strategy
-- Instance profile configuration
-- Host security hardening
-
-### Data Storage
-- Database infrastructure
-- Storage service configuration
-- Backup automation
-- Replication setup
-- Encryption implementation
-- Data lifecycle management
-- Performance optimization
-
-### Security Implementation
-- Network ACLs
-- WAF configuration
-- Secret management
-- Private link/endpoint setup
-- Logging and monitoring
-- Compliance controls
-- Identity federation
-
-### Operational Tooling
-- Monitoring infrastructure
-- Log aggregation setup
-- Alerting configuration
-- Metrics collection
-- Dashboard templates
-- Incident management integration
-
-## Deployment Management
-
-### State Management
-- Backend configuration
-- State locking implementation
-- Resource dependency mapping
-- Resource naming strategy
-- Tagging policy
-
-### CI/CD Integration
-- Pipeline configuration
-- Validation workflow
-- Approval gates
-- Drift detection
-- Automated testing
-
-### Environment Separation
-- Development environment
-- Staging configuration
-- Production hardening
-- Multi-account strategy
-- Resource isolation approach
-
-## Cost Optimization
-
-### Resource Efficiency
-- Right-sizing recommendations
-- Reserved capacity strategy
-- Spot usage opportunities
-- Auto-scaling policies
-- Idle resource detection
-
-### Cost Control
-- Budget implementation
-- Cost allocation tagging
-- Usage monitoring
-- Anomaly detection
-- Savings plans strategy
-
-## Implementation Strategy
-
-### Deployment Plan
-- Resource sequencing
-- Dependency management
-- Rollout strategy
-- Testing approach
-- Validation criteria
-
-### Documentation
-- Architecture diagrams
-- Resource inventory
-- Configuration reference
-- Operational runbooks
-- Security controls
+- Immutable infrastructure where possible
+- Encrypt everything at rest and in transit
+- No hardcoded values - use variables and data sources
+- Include outputs for cross-module references
+- Add lifecycle rules to prevent accidental deletion of stateful resources

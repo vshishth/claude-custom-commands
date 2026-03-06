@@ -1,52 +1,34 @@
 ---
 description: Create a well-structured git commit with conventional commit format
 argument-hint: optional description of changes
-allowed-tools: Bash(git status:*, git diff:*, git diff --staged:*, git log:*)
+allowed-tools: Bash(git:*)
 ---
 
-# Git Commit Generator
+# Git Commit
 
-## Context
-Current git status:
-!`git status`
+Current state:
+!`git status --short`
 
 Staged changes:
-!`git diff --staged`
+!`git diff --staged --stat`
 
-Unstaged changes:
-!`git diff`
-
-Recent commit messages for reference:
+Recent commits:
 !`git log -5 --pretty=format:"%h %s" --no-merges`
 
 ## Instructions
 
-Create a well-structured, atomic git commit following these steps:
+1. **Analyze** the staged changes (or all changes if nothing is staged)
+2. **Generate** a conventional commit message:
+   ```
+   type(scope): summary (under 50 chars, imperative mood)
 
-1. **Analyze Changes**
-   - Understand what the changes do
-   - Group related changes into logical units
+   body (WHAT changed and WHY, not HOW)
 
-2. **Commit Message Structure**
-   - Use the Conventional Commits format:
-     ```
-     type(scope): summary
-     
-     body
-     
-     footer
-     ```
-   - Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore
-   - Keep summary under 50 chars, imperative mood
-   - Body explains WHAT and WHY (not HOW)
-   - Reference issues in footer
+   Refs: #issue
+   ```
+   Types: feat, fix, refactor, perf, test, docs, build, ci, chore
+3. **Execute** the commit
 
-3. **Command Generation**
+If changes aren't staged, suggest what to stage and what to split into separate commits.
 
-Generate the git commands needed to:
-1. Add any missing files to staging if needed
-2. Create a properly formatted commit
-3. Verify the commit was successful
-
-## Implementation Details
 $ARGUMENTS

@@ -1,82 +1,30 @@
 ---
-description: Generate comprehensive documentation for code or projects
-argument-hint: code to document or project structure information
-allowed-tools: Read, Grep, Glob, Task
+description: Generate documentation for code or projects
+argument-hint: file path, module, or project directory
+allowed-tools: Read, Grep, Glob
 ---
 
 # Documentation Generator
 
-## Instructions
-
-I'll create professional documentation for the following code or project:
+Generate documentation for:
 
 ```
 $ARGUMENTS
 ```
 
-## Documentation Process
+## Process
 
-1. **Documentation Scope Assessment**
-   - Codebase structure analysis
-   - Public API identification
-   - Key functionality mapping
-   - User workflows
-   - Configuration options
-   - Extension points
+1. **Read the code** to understand its purpose, public API, and usage patterns
+2. **Identify the audience** - Is this for users, contributors, or operators?
+3. **Generate appropriate documentation**:
+   - **README**: Purpose, quick start, installation, basic usage
+   - **API docs**: Function signatures, parameters, return types, examples
+   - **Architecture docs**: Component overview, data flow, key decisions
+   - **Runbook**: How to deploy, monitor, troubleshoot
 
-2. **Documentation Type Selection**
-   - API reference
-   - Developer guides
-   - User manuals
-   - Getting started guides
-   - Architecture documentation
-   - Code comments
-   - README and repository documentation
+## Principles
 
-## Documentation Structure
-
-### Project Overview
-- Purpose and scope
-- Key features
-- Technology stack
-- Architecture diagram
-- Prerequisites
-- License information
-
-### Installation & Setup
-- Step-by-step installation guide
-- Environment configuration
-- Dependencies management
-- Verification steps
-- Common setup issues and solutions
-
-### Usage Guide
-- Basic usage examples
-- Common workflows
-- Configuration options
-- Advanced features
-- Best practices
-- Performance considerations
-
-### API Documentation
-For each component/class/function:
-- Purpose and responsibility
-- Parameters with types and constraints
-- Return values
-- Exceptions and error handling
-- Usage examples
-- Edge cases and limitations
-
-### Development Guide
-- Code organization
-- Contribution workflow
-- Testing approach
-- Coding standards
-- Build and deployment process
-
-## Document Presentation
-- Clear hierarchy with proper headings
-- Consistent formatting
-- In-line code examples
-- Visual elements where appropriate
-- Cross-references between related sections
+- Lead with a working example - show, don't just describe
+- Document the WHY, not just the WHAT (the code already shows the what)
+- Keep it maintainable - don't document things that change frequently without automation
+- Assume the reader is a competent engineer who doesn't need hand-holding

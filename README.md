@@ -47,6 +47,7 @@ Reusable command prompts for Claude Code, designed around Principal Engineer wor
 | Command | Description |
 |---------|-------------|
 | `/git-commit` | Conventional commit messages from staged changes |
+| `/draft-pr` | Commit staged changes, branch, push, and open a draft PR |
 
 ## Usage
 

@@ -16,7 +16,7 @@ Current branch:
 !`git branch --show-current`
 
 Default branch:
-!`git remote show origin | grep 'HEAD branch' | awk '{print $NF}'`
+!`git symbolic-ref refs/remotes/origin/HEAD --short`
 
 Recent commits:
 !`git log -5 --pretty=format:"%h %s" --no-merges`

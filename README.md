@@ -13,6 +13,7 @@ Reusable command prompts for Claude Code, designed around Principal Engineer wor
 | `/architecture` | Design new systems or evaluate existing architecture |
 | `/test-generator` | Generate meaningful tests with proper coverage strategy |
 | `/performance` | Identify bottlenecks and provide concrete optimizations |
+| `/pr-comments` | Review and resolve open PR comments with principal-engineer-level fixes |
 
 ### Analysis
 | Command | Description |
@@ -48,6 +49,7 @@ Reusable command prompts for Claude Code, designed around Principal Engineer wor
 |---------|-------------|
 | `/git-commit` | Conventional commit messages from staged changes |
 | `/draft-pr` | Commit staged changes, branch, push, and open a draft PR |
+| `/sync-branch` | Merge latest main/develop into current branch and resolve conflicts |
 
 ## Usage
 

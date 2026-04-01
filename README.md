@@ -1,71 +1,73 @@
 # Custom Claude Commands
 
-Reusable command prompts for Claude Code, designed around Principal Engineer workflows.
+Reusable command prompts for Claude Code, organized by workflow stage.
 
 ## Commands
 
-### Development
+### Understand — "What is this? Why is it broken?"
 | Command | Description |
 |---------|-------------|
-| `/code-review` | Comprehensive code review with severity ratings and actionable fixes |
+| `/explain` | Explain unfamiliar code, trace logic, clarify architecture |
 | `/debug` | Systematic root cause analysis from error messages or stack traces |
+| `/investigate` | Investigate a bug from vague symptoms, logs, or error reports |
+
+### Build — "Make it work, make it right, make it fast"
+| Command | Description |
+|---------|-------------|
+| `/implement` | Implement a feature from a description, issue, or spec |
+| `/fix` | Fix lint errors, type errors, or failing tests |
 | `/refactor` | Safe, incremental refactoring with behavior preservation |
-| `/architecture` | Design new systems or evaluate existing architecture |
-| `/test-generator` | Generate meaningful tests with proper coverage strategy |
-| `/performance` | Identify bottlenecks and provide concrete optimizations |
-| `/pr-comments` | Review and resolve open PR comments with principal-engineer-level fixes |
+| `/test` | Generate meaningful tests with proper coverage strategy |
+| `/perf` | Identify bottlenecks and provide concrete optimizations |
 
-### Analysis
+### Ship — "Get it out the door"
 | Command | Description |
 |---------|-------------|
-| `/security-audit` | Security vulnerability assessment with CWE references and fixes |
-| `/dependency-analysis` | Dependency health, CVEs, bloat detection, upgrade planning |
-| `/tech-debt` | Technical debt assessment with prioritized paydown plan |
+| `/commit` | Conventional commit messages from staged changes |
+| `/pr` | Commit, branch, push, and open a draft PR |
+| `/sync` | Merge latest main/develop and resolve conflicts |
+| `/pr-fix` | Resolve open PR review comments |
+| `/review` | Comprehensive code review with severity ratings |
+| `/deploy` | Deployment strategy with rollback capabilities |
+| `/docker` | Production-ready multi-stage Dockerfiles |
 
-### Writing
+### Design — "Plan before you build"
 | Command | Description |
 |---------|-------------|
-| `/technical-spec` | Technical design documents with goals, design, risks, and rollout |
-| `/adr` | Architecture Decision Records for documenting key decisions |
-| `/documentation` | Generate docs for code, APIs, or projects |
-| `/release-notes` | Structured release notes from git history |
+| `/arch` | Design new systems or evaluate existing architecture |
+| `/spec` | Technical design documents with goals, risks, and rollout |
+| `/api` | REST or GraphQL API design with contracts and docs |
+| `/adr` | Architecture Decision Records |
+| `/migration` | Safe, zero-downtime database migration scripts |
+| `/infra` | IaC templates (Terraform, CloudFormation, Pulumi) |
+| `/ci` | CI/CD pipeline configuration for any platform |
 
-### DevOps
+### Audit — "Is it healthy?"
 | Command | Description |
 |---------|-------------|
-| `/cicd-pipeline` | CI/CD pipeline configuration for any platform |
-| `/dockerfile-generator` | Production-ready multi-stage Dockerfiles |
-| `/deployment-strategy` | Deployment strategies with rollback capabilities |
-| `/infrastructure-as-code` | IaC templates (Terraform, CloudFormation, Pulumi) |
-
-### Data & API
-| Command | Description |
-|---------|-------------|
-| `/migration-generator` | Safe, zero-downtime database migration scripts |
-| `/api-design` | REST or GraphQL API design with contracts and docs |
-
-### Productivity
-| Command | Description |
-|---------|-------------|
-| `/git-commit` | Conventional commit messages from staged changes |
-| `/draft-pr` | Commit staged changes, branch, push, and open a draft PR |
-| `/sync-branch` | Merge latest main/develop into current branch and resolve conflicts |
+| `/security` | Security vulnerability assessment with CWE references |
+| `/deps` | Dependency health, CVEs, bloat detection, upgrade planning |
+| `/debt` | Technical debt assessment with prioritized paydown plan |
+| `/docs` | Generate documentation for code, APIs, or projects |
+| `/release` | Structured release notes from git history |
 
 ## Usage
 
 ```bash
 # In Claude Code, type the command name with a forward slash
-/code-review src/auth/login.ts
-/debug "TypeError: Cannot read property 'id' of undefined"
-/security-audit src/api/
+/commands:understand:explain src/auth/login.ts
+/commands:build:fix
+/commands:ship:commit
+/commands:audit:security src/api/
 ```
 
 ## Design Principles
 
+- **Workflow-first**: Categories mirror how engineers think — understand, build, ship, design, audit
+- **Short names**: Frequently-used commands are fast to type (`/commit`, `/pr`, `/fix`)
 - **Focused**: Each command does one thing well in ~30-40 lines
-- **Opinionated**: Commands guide toward specific output, not exhaustive checklists
 - **Practical**: Every command produces actionable output, not generic advice
-- **Composable**: Commands can be chained (review -> refactor -> test-generator)
+- **Composable**: Commands chain naturally (explain -> implement -> test -> commit -> pr)
 
 ## Creating New Commands
 

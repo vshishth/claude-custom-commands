@@ -1,6 +1,6 @@
 # Custom Claude Commands
 
-Reusable command prompts for Claude Code, organized by workflow stage.
+Reusable command prompts for Claude Code, organized by workflow stage. Every command enforces Principal Engineer standards.
 
 ## Commands
 
@@ -61,14 +61,38 @@ Reusable command prompts for Claude Code, organized by workflow stage.
 /commands:audit:security src/api/
 ```
 
+## Command Quality Standards
+
+Every command in this collection enforces:
+- **Principal Engineer role** — operates with senior technical judgment
+- **Ambiguity handling** — explicit behavior when inputs are incomplete
+- **Scoped tool access** — `allowed-tools` narrowly scoped (no bare `Bash`)
+- **Structured output** — deterministic, actionable output with concrete fixes
+- **Safety guards** — destructive commands require explicit confirmation
+
+## Composability
+
+Commands chain naturally across workflow stages:
+
+```
+explain → investigate → debug → fix → test → commit → pr
+spec → arch → implement → test → review → commit → pr
+security → deps → debt   (audit sweep)
+```
+
 ## Design Principles
 
 - **Workflow-first**: Categories mirror how engineers think — understand, build, ship, design, audit
 - **Short names**: Frequently-used commands are fast to type (`/commit`, `/pr`, `/fix`)
-- **Focused**: Each command does one thing well in ~30-40 lines
+- **Focused**: Each command does one thing well in ~45-65 lines
 - **Practical**: Every command produces actionable output, not generic advice
-- **Composable**: Commands chain naturally (explain -> implement -> test -> commit -> pr)
+- **Composable**: Commands chain naturally across workflow stages
 
 ## Creating New Commands
 
-See `templates/command-template.md` for the structure. Keep commands concise and trust the model to fill in domain knowledge.
+See `templates/command-template.md` for the structure. New commands must:
+- Use the canonical structure (frontmatter → role → context → process → ambiguity → output → constraints)
+- Scope `allowed-tools` narrowly
+- Include a "When Information is Insufficient" section
+- Require concrete fixes in output, not generic advice
+- Use "Constraints" for hard rules

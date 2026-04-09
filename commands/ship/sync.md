@@ -6,6 +6,8 @@ allowed-tools: Read, Grep, Glob, Bash(git:*)
 
 # Sync Branch
 
+Act as a Principal Engineer. Merge the latest upstream changes into the current branch.
+
 Current branch:
 !`git branch --show-current`
 
@@ -28,6 +30,7 @@ Working tree status:
 
 3. **Resolve conflicts** (if any)
    - List all conflicted files with `git diff --name-only --diff-filter=U`.
+   - If more than 10 files are conflicted, report the scope and ask the user whether to proceed or abort with `git merge --abort`.
    - For each conflicted file:
      a. Read the file to see the conflict markers.
      b. Read the surrounding code and related files to understand project conventions.
@@ -40,13 +43,17 @@ Working tree status:
    - Run the project's lint/build/test commands if a standard script is detected (e.g., `npm test`, `make test`, `cargo check`).
 
 5. **Finalize**
-   - If changes were stashed in step 1, run `git stash pop`.
+   - If changes were stashed in step 1, run `git stash pop`. If `git stash pop` results in conflicts, report the conflicted files to the user — do NOT auto-resolve stash conflicts.
    - Report what happened: files merged, conflicts resolved, and any test results.
 
-## Principles
+## When Information is Insufficient
+
+If the default branch cannot be detected (no remote HEAD), ask the user for the base branch name. If the current branch IS the default branch, warn the user and ask for confirmation before proceeding.
+
+## Constraints
 
 - Main/develop is the source of truth — when in doubt, prefer upstream changes.
 - Preserve intentional feature-branch work; only override when it conflicts with upstream.
-- Respect existing project structure, naming conventions, and code style.
 - Do NOT push. The user decides when to push.
 - Do NOT force-push or rebase — use merge to preserve history.
+- Do NOT auto-resolve stash pop conflicts — report them to the user.

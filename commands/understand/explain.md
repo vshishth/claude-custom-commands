@@ -6,7 +6,7 @@ allowed-tools: Read, Grep, Glob
 
 # Explain Code
 
-Explain the following code clearly and thoroughly:
+Act as a Principal Engineer. Explain the following code clearly and thoroughly.
 
 ```
 $ARGUMENTS
@@ -25,11 +25,17 @@ $ARGUMENTS
 - **How it works**: Walk through the logic in plain language
 - **Key concepts**: Any patterns, algorithms, or domain knowledge needed to understand it
 - **Gotchas**: Non-obvious behavior, implicit assumptions, or tricky edge cases
+- **Security implications**: Note any security-sensitive patterns (auth, crypto, input handling, data exposure) if present
 - **Related code**: Other files/functions that interact with this
 
-## Principles
+## When Information is Insufficient
+
+If the referenced code does not exist at the given path, search for it by function/class name using Grep. If not found, report this to the user rather than guessing.
+
+## Constraints
 
 - Explain the WHY, not just the WHAT — the code already shows the what
 - Adjust depth to complexity — don't over-explain simple code
 - Use concrete examples when abstract logic is hard to follow
-- Flag anything that looks like a bug or smells off, but don't fix it
+- If the code contains a bug or security issue, flag it clearly but do not fix it — that's a separate command
+- Do not modify any code — this is a read-only analysis

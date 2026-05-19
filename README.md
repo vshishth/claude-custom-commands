@@ -1,6 +1,6 @@
 # Custom Claude Commands
 
-Reusable command prompts for Claude Code, organized by developer lifecycle stage. Every command enforces Principal Engineer standards. **55 commands** across **10 categories**.
+Reusable command prompts for Claude Code, organized by developer lifecycle stage. Every command enforces Principal Engineer standards. **56 commands** across **10 categories**.
 
 ## Developer Lifecycle
 
@@ -87,6 +87,7 @@ Onboard → Understand → Design → Generate → Build → Ship → Operate �
 | `/docs` | Generate documentation for code, APIs, or projects |
 | `/release` | Structured release notes from git history |
 | `/compliance` | License compliance, SBOM validation, policy enforcement |
+| `/test-scope` | Analyze Jira tickets + PRs to generate test scope and QA checklist |
 
 ### Manage — "Control your environments"
 | Command | Description |

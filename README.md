@@ -1,6 +1,6 @@
 # Custom Claude Commands
 
-Reusable command prompts for Claude Code, organized by developer lifecycle stage. Every command enforces Principal Engineer standards. **56 commands** across **10 categories**.
+Reusable command prompts for Claude Code, organized by developer lifecycle stage. **57 commands** across **10 categories**. Commands read the project's memory index (`~/.claude/projects/<repo>/memory/MEMORY.md`) at start and hand off to `/learn` at the end.
 
 ## Developer Lifecycle
 
@@ -21,8 +21,7 @@ Onboard → Understand → Design → Generate → Build → Ship → Operate �
 | Command | Description |
 |---------|-------------|
 | `/explain` | Explain unfamiliar code, trace logic, clarify architecture |
-| `/debug` | Systematic root cause analysis from error messages or stack traces |
-| `/investigate` | Investigate a bug from vague symptoms, logs, or error reports |
+| `/investigate` | Root-cause a bug or incident from symptoms, logs, a stack trace, or a Jira key — code + Datadog + Loki + git history |
 | `/trace` | Distributed trace analysis across multi-service hops |
 | `/cost` | Cloud cost analysis and optimization recommendations |
 
@@ -60,8 +59,9 @@ Onboard → Understand → Design → Generate → Build → Ship → Operate �
 ### Ship — "Get it out the door"
 | Command | Description |
 |---------|-------------|
+| `/start` | Start a Jira ticket: fetch it, create the branch, surface AC + related memory, draft a PR plan |
 | `/commit` | Conventional commit messages from staged changes |
-| `/pr` | Commit, branch, push, and open a draft PR |
+| `/pr` | Commit, push, open a draft PR titled with the branch's Jira key, report CI status |
 | `/sync` | Merge latest main/develop and resolve conflicts |
 | `/pr-fix` | Resolve open PR review comments |
 | `/review` | Comprehensive code review with severity ratings |
@@ -97,6 +97,7 @@ Onboard → Understand → Design → Generate → Build → Ship → Operate �
 | `/deps-update` | Automated dependency updates with compatibility analysis |
 | `/version` | Semantic versioning: bump, changelog, tag management |
 | `/config` | Configuration drift detection between environments |
+| `/learn` | Save a correction, gotcha, or verified fact as a named memory file and index it in MEMORY.md |
 
 ### Automate — "Never do it twice"
 | Command | Description |
